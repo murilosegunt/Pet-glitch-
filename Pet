@@ -3,17 +3,17 @@
 #include <algorithm>
 #include <math.h>
 #include <iostream>
-int Reb; //í™˜ìƒ ìˆ˜
-int Exp; //íŽ€ì¹˜ë‹¹ ì˜¤ë¥´ëŠ” ê²½í—˜ì¹˜ëŸ‰
-int GlitchExp; // ë§žì¶°ì•¼ í•˜ëŠ” ê²½í—˜ì¹˜ëŸ‰
+int Reb; //환생 수
+int Exp; //펀치당 오르는 경험치량
+int GlitchExp; // 맞춰야 하는 경험치량
 int PetExpAcc[20]={0,1250,3750,7500,12500,18750,26250,35000,45000,56250,68750,82500,97500,113750,131250,150000,170000,191250,213750,237500};
 int PetExp[20]={0,1250,2500,3750,5000,6250,7500,8750,10000,11250,12500,13750,15000,16250,18750,20000,21250,22500,23750};
-void MuscleKing(int Reb) { //ë¨¸ìŠ¬í‚¹
-    if(Reb>18980) { //18980 ì´ìƒ
+void MuscleKing(int Reb) { //머슬킹
+    if(Reb>18980) { //18980 이상
         printf("    MuscleKing: Impossible (Rebirth amount is over)\n\n");
         return;
     }
-    if(Reb%2!=0) { //í™€ìˆ˜í™˜ìƒ
+    if(Reb%2!=0) { //홀수환생
         printf("    MuscleKing: Impossible (Rebirth amount is not even number)\n\n");
         return;
     }
@@ -50,6 +50,6 @@ int main()
         scanf("%d",&Reb);
         printf("\n");
         if(Reb==-1) return 0;
-        MuscleKing(Reb); //ë¨¸ìŠ¬í‚¹ ë°”ìœ„ ê¸°ì¤€ ê³„ì‚° ì‹œìž‘
+        MuscleKing(Reb); //머슬킹 바위 기준 계산 시작
     }
 }
