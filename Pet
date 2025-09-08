@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <algorithm>
+#include <math.h>
+#include <iostream>
+int Reb; //í™˜ìƒ ìˆ˜
+int Exp; //íŽ€ì¹˜ë‹¹ ì˜¤ë¥´ëŠ” ê²½í—˜ì¹˜ëŸ‰
+int GlitchExp; // ë§žì¶°ì•¼ í•˜ëŠ” ê²½í—˜ì¹˜ëŸ‰
+int PetExpAcc[20]={0,1250,3750,7500,12500,18750,26250,35000,45000,56250,68750,82500,97500,113750,131250,150000,170000,191250,213750,237500};
+int PetExp[20]={0,1250,2500,3750,5000,6250,7500,8750,10000,11250,12500,13750,15000,16250,18750,20000,21250,22500,23750};
+void MuscleKing(int Reb) { //ë¨¸ìŠ¬í‚¹
+    if(Reb>18980) { //18980 ì´ìƒ
+        printf("    MuscleKing: Impossible (Rebirth amount is over)\n\n");
+        return;
+    }
+    if(Reb%2!=0) { //í™€ìˆ˜í™˜ìƒ
+        printf("    MuscleKing: Impossible (Rebirth amount is not even number)\n\n");
+        return;
+    }
+    Exp=(Reb+20)*12.5;
+    for(int i=1; i<=19; i++) {
+        if(PetExpAcc[i]<Exp) continue;
+        if(PetExpAcc[i]==Exp) {
+            printf("    MuscleKing: 1Lv 0Exp (+%d)\n\n",i*5);
+            return;
+        }
+        if(PetExpAcc[i]>Exp) {
+            GlitchExp=PetExpAcc[i]-Exp;
+            for(int j=1; j<=19; j++) {
+                if(PetExpAcc[j]<GlitchExp) continue;
+                if(PetExpAcc[j]>GlitchExp) {
+                    printf("    MuscleKing: %dLv %dExp (+%d)\n\n",j,GlitchExp-PetExpAcc[j-1],(i-j+1)*5);
+                    return;
+                }
+                else {
+                    printf("    MuscleKing: Unknown\n\n");
+                    return;
+                }
+            }
+        }
+    }
+}
+int main()
+{
+    printf("For people who got ruined rebirths. \n[Muscle legends Glitch Pet Exp Calculator]\n");
+    printf("All calculated values are based on Muscle King Rock and Unique Pet. Remember it will must not work rightly on aura.\n");
+    printf("Made by StarAce_Luna\n\n");
+    while(1) {
+        printf("Enter your rebirth amount. You can exit this program by entering '-1'.\n");
+        scanf("%d",&Reb);
+        printf("\n");
+        if(Reb==-1) return 0;
+        MuscleKing(Reb); //ë¨¸ìŠ¬í‚¹ ë°”ìœ„ ê¸°ì¤€ ê³„ì‚° ì‹œìž‘
+    }
+}
